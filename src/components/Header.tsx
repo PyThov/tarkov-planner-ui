@@ -1,9 +1,9 @@
-import { GITHUB_URL, TITLE } from "../utils/constants";
-import { theme } from "../theming/main";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { Button, IconButton, Paper } from "@mui/material";
+import BugReportIcon from '@mui/icons-material/BugReport';
+import { Box, Button, IconButton, Paper, Tooltip } from "@mui/material";
+import { GITHUB_URL, ISSUES_URL, TITLE } from "../utils/constants";
 
 export default function Header() {
   return (
@@ -23,13 +23,22 @@ export default function Header() {
             {TITLE}
           </Typography>
         </Button>
-        <Paper sx={{ padding: "2px" }}>
-          <IconButton href={GITHUB_URL} target="_blank">
-            <GitHubIcon />
-          </IconButton>
-        </Paper>
+        <Box display="flex" flexDirection="row" gap={1}>
+          <Tooltip title="Submit a bug or feature request!">
+            <Paper sx={{ padding: "2px" }}>
+              <IconButton href={ISSUES_URL} target="_blank">
+                <BugReportIcon />
+              </IconButton>
+            </Paper>
+          </Tooltip>
+          <Paper sx={{ padding: "2px" }}>
+            <IconButton href={GITHUB_URL} target="_blank">
+              <GitHubIcon />
+            </IconButton>
+          </Paper>
+        </Box>
       </span>
-      <Divider style={{ borderColor: theme.border.primary }} />
+      <Divider />
     </div>
   );
 }

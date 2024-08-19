@@ -1,6 +1,7 @@
 # Tarkov Planner UI
 
-## Objectives
+## Objective
+To provide a UI for visualizing what is needed to complete a specific task in Escape from Tarkov.
 
 - Show all tasks
 - Table of all tasks
@@ -11,3 +12,4 @@
 - Visually show path to task
 - Dedicated page for task plan that shows the path along with some potentially useful stats
 - (Future) Recent plans?
+- (Future) Flow chart of task progression

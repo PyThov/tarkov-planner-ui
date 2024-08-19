@@ -13,7 +13,13 @@ import {
   TABLE_DEFAULT_LIMIT,
   TABLE_STRINGS,
 } from "../utils/constants";
-import { Button, Link, TablePagination, Typography } from "@mui/material";
+import {
+  Button,
+  Divider,
+  Link,
+  TablePagination,
+  Typography,
+} from "@mui/material";
 import SearchField from "./SearchField";
 
 interface TasksTableProps {
@@ -81,7 +87,24 @@ export const TasksTable = ({
                 key={row.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <TableCell
+                  component="th"
+                  scope="row"
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 2,
+                  }}
+                >
+                  <Button
+                    size="small"
+                    variant="contained"
+                    href={`/task_plan/${row.id}`}
+                  >
+                    {TABLE_STRINGS.plan}
+                  </Button>
+                  <Divider orientation="vertical" variant="middle" flexItem />
                   <Link href={row.wikiLink} target="_blank" color="secondary">
                     {row.name}
                   </Link>
@@ -99,11 +122,7 @@ export const TasksTable = ({
                     <Typography color="error.light">No</Typography>
                   )}
                 </TableCell>
-                <TableCell align="right">
-                  <Button variant="contained" href={`/task_plan/${row.id}`}>
-                    {TABLE_STRINGS.plan}
-                  </Button>
-                </TableCell>
+                <TableCell align="right"></TableCell>
               </TableRow>
             ))}
           </TableBody>

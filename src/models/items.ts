@@ -5,7 +5,8 @@ export interface Item {
   wikiLink: string; // A string representing a URL
 }
 
-export interface ItemRequirement extends Item {
+export interface ItemRequirement {
   count: number;
   foundInRaid: boolean;
+  items: Item[];
 }

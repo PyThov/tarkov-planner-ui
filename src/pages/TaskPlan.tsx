@@ -33,7 +33,7 @@ export default function TaskPlan({}: TaskPlanProps) {
         data && (
           <Box display="flex" flexDirection="row" alignItems="start" gap={4}>
             <TaskPlanCard taskDeps={data} />
-            <TaskItemsCard itemReqs={data.items} />
+            <TaskItemsCard itemReqs={data.items} total={data.itemsTotal} />
           </Box>
         )
       )}

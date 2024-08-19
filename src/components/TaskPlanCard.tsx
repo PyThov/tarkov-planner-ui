@@ -10,6 +10,7 @@ import {
 import CircleSharpIcon from "@mui/icons-material/CircleSharp";
 import { TaskDependencies } from "../models/tasks";
 import ExpansiveItem from "./ExpansiveItem";
+import StickyCardHeader from "./StickyCardHeader";
 
 interface TaskPlanCardProps {
   taskDeps: TaskDependencies;
@@ -17,35 +18,18 @@ interface TaskPlanCardProps {
 export default function TaskPlanCard({ taskDeps }: TaskPlanCardProps) {
   console.log(taskDeps);
   return (
-    <div>
-      <Paper
-        sx={(theme) => ({
-          backgroundColor: theme.palette.primary.dark,
-          position: "sticky",
-          zIndex: 100,
-          padding: 2,
-          top: 0,
-          borderBottomRightRadius: 0,
-          borderBottomLeftRadius: 0,
-          flexDirection: "row",
-          display: "flex",
-          alignItems: "end",
-          justifyContent: "space-between",
-        })}
-      >
+    <Box sx={{ width: "45vw" }}>
+      <StickyCardHeader>
         <Box display="flex" flexDirection="row" alignItems="end" gap={1}>
-          <img
-            style={{ maxHeight: "100px" }}
-            src={taskDeps.tasks[taskDeps.tasks.length - 1].taskImageLink || ""}
-          />
-          <Typography variant="h6">{taskDeps.name}</Typography>
-        </Box>
-        {/* <Box flexDirection="column" display="flex"> */}
-        {/* <Typography>Items: {taskDeps.itemsTotal}</Typography> */}
-        <Typography>Tasks: {taskDeps.tasksTotal}</Typography>
-        {/* </Box> */}
-      </Paper>
-      <Card sx={{ minWidth: "40vw" }}>
+            <img
+              style={{ maxHeight: "100px" }}
+              src={taskDeps.tasks[taskDeps.tasks.length - 1].taskImageLink || ""}
+            />
+            <Typography variant="h4">{taskDeps.name}</Typography>
+          </Box>
+          <Typography>Tasks: {taskDeps.tasksTotal}</Typography>
+        </StickyCardHeader>
+      <Card>
         <CardContent>
           <Box display="flex" flexDirection="column" gap={1}>
             {taskDeps.tasks.map((task) => {
@@ -98,6 +82,6 @@ export default function TaskPlanCard({ taskDeps }: TaskPlanCardProps) {
           </Box>
         </CardContent>
       </Card>
-    </div>
+    </Box>
   );
 }

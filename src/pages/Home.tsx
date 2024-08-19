@@ -30,7 +30,15 @@ export default function Home() {
   }, [searchTerm]);
 
   return (
-    <div style={{ width: "100%" }}>
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "50px",
+      }}
+    >
       <TasksTable
         data={tasks}
         setLimit={setLimit}
