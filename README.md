@@ -1,4 +1,4 @@
-See the API here: https://github.com/PyThov/tarkov-planner
+See the API here: https://github.com/PyThov/tarkov-planner-backend
 
 # Tarkov Planner UI
 
