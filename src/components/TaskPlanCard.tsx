@@ -16,7 +16,6 @@ interface TaskPlanCardProps {
   taskDeps: TaskDependencies;
 }
 export default function TaskPlanCard({ taskDeps }: TaskPlanCardProps) {
-  console.log(taskDeps);
   return (
     <Box sx={{ width: "45vw" }}>
       <StickyCardHeader>
