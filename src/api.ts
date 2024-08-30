@@ -14,9 +14,8 @@ export const fetchTasks = async ({
   offset = 0,
   searchTerm = "",
 }: FetchTasksParams): Promise<Tasks> => {
-  const response = await fetch(
-    `${apiUrl}/${VERSION}/${ENDPOINTS.tasks}?limit=${limit}&offset=${offset}&searchTerm=${searchTerm}`,
-  );
+  const url = `${apiUrl}/${VERSION}/${ENDPOINTS.tasks}?limit=${limit}&offset=${offset}&searchTerm=${searchTerm}`
+  const response = await fetch(url);
 
   if (!response.ok) throw new Error("Network response was not ok");
 

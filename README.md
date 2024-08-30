@@ -1,6 +1,13 @@
 See the API here: https://github.com/PyThov/tarkov-planner-backend
 
-# Tarkov Planner UI
+# Tarkov Planner - UI
+
+To run the UI:
+```bash
+npm i
+
+npm run dev
+```
 
 ## Objective
 To provide a UI for visualizing what is needed to complete a specific task in Escape from Tarkov.

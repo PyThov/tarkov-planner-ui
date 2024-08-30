@@ -24,7 +24,6 @@ export default function Home() {
     retry: API_RETRIES,
   });
 
-  console.log(tasks);
   React.useEffect(() => {
     setOffset(0);
   }, [searchTerm]);
