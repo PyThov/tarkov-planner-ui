@@ -2,7 +2,7 @@ import { TaskDependencies, Tasks } from "./models/tasks";
 import { ENDPOINTS } from "./utils/constants";
 
 const VERSION = "v1";
-const apiUrl = import.meta.env.VITE_API_URL as string;
+const apiUrl = import.meta.env.VITE_API_URL as string || "";
 
 interface FetchTasksParams {
   limit?: number;
