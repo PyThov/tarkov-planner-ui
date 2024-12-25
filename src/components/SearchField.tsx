@@ -1,30 +1,21 @@
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { debounce } from "lodash";
-import { useMemo } from "react";
+import { IconButton } from "@mui/material";
+import { Clear } from "@mui/icons-material";
 
 interface SearchFieldProps {
-  debounceDelay?: number; // in milliseconds
+  searchTerm: string
   placeholder?: string;
   setSearchTerm: (a: string) => void;
 }
 export default function SearchField({
-  debounceDelay = 200,
+  searchTerm,
   placeholder,
   setSearchTerm,
 }: SearchFieldProps) {
-  // Create a debounced function that only updates the state after 100ms
-  const debouncedChangeHandler = useMemo(
-    () =>
-      debounce((value: string) => {
-        setSearchTerm(value);
-      }, debounceDelay),
-    [setSearchTerm, debounceDelay],
-  );
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    debouncedChangeHandler(e.target.value); // Pass the value to the debounced function
+    setSearchTerm(e.target.value); // Pass the value to the debounced function
   };
 
   return (
@@ -43,8 +34,13 @@ export default function SearchField({
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder={placeholder}
-        inputProps={{ "aria-label": placeholder, onChange: handleChange }}
+        inputProps={{ "aria-label": placeholder }}
+        onChange={handleChange}
+        value={searchTerm}
       />
+      <IconButton onClick={() => setSearchTerm("")}>
+        <Clear />
+      </IconButton>
     </Paper>
   );
 }

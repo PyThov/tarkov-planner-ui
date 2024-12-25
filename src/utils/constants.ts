@@ -19,3 +19,5 @@ export const ERROR_MSGS = {
 };
 
 export const API_RETRIES = 3;
+
+export const DEBOUNCE_DELAY = 200; // milliseconds

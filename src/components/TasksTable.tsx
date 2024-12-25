@@ -24,12 +24,14 @@ import SearchField from "./SearchField";
 
 interface TasksTableProps {
   data: Tasks | undefined;
+  searchTerm: string;
   setOffset: (a: number) => void;
   setLimit: (a: number) => void;
   setSearchTerm: (a: string) => void;
 }
 export const TasksTable = ({
   data,
+  searchTerm,
   setOffset,
   setLimit,
   setSearchTerm,
@@ -73,6 +75,7 @@ export const TasksTable = ({
               <TableCell>
                 <div style={{ display: "flex", justifyContent: "flex-end" }}>
                   <SearchField
+                    searchTerm={searchTerm}
                     placeholder={TABLE_STRINGS.searchPlaceholder}
                     setSearchTerm={setSearchTerm}
                   />

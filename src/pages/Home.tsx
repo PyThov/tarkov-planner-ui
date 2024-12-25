@@ -4,16 +4,19 @@ import { CircularProgress, Typography } from "@mui/material";
 import { fetchTasks } from "../api";
 import {
   API_RETRIES,
+  DEBOUNCE_DELAY,
   ENDPOINTS,
   ERROR_MSGS,
   TABLE_DEFAULT_LIMIT,
 } from "../utils/constants";
 import { TasksTable } from "../components/TasksTable";
+import { debounce } from "lodash";
 
 export default function Home() {
   const [limit, setLimit] = React.useState(TABLE_DEFAULT_LIMIT);
   const [offset, setOffset] = React.useState(0);
-  const [searchTerm, setSearchTerm] = React.useState("");
+  const [searchTerm, setSearchTerm] = React.useState(""); // used for API query
+  const [searchInput, setSearchInput] = React.useState(""); // used for controlling input of search term
   const {
     data: tasks,
     error: tasksError,
@@ -28,6 +31,19 @@ export default function Home() {
     setOffset(0);
   }, [searchTerm]);
 
+  const debouncedChangeHandler = React.useMemo(
+    () =>
+      debounce((value: string) => {
+        setSearchTerm(value);
+      }, DEBOUNCE_DELAY),
+    [setSearchTerm],
+  );
+
+  const handleSearch = React.useCallback((newValue: string) => {
+    setSearchInput(newValue)
+    debouncedChangeHandler(newValue)
+  }, [debouncedChangeHandler])
+
   return (
     <div
       style={{
@@ -40,9 +56,10 @@ export default function Home() {
     >
       <TasksTable
         data={tasks}
+        searchTerm={searchInput}
         setLimit={setLimit}
         setOffset={setOffset}
-        setSearchTerm={setSearchTerm}
+        setSearchTerm={handleSearch}
       />
       {tasksIsLoading && <CircularProgress color="secondary" />}
       {tasksError && <Typography>{ERROR_MSGS.generic}</Typography>}
