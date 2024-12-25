@@ -15,9 +15,9 @@ export const ENDPOINTS = {
 };
 
 export const ERROR_MSGS = {
-  generic: "An error occurred.",
+  generic: "An error occurred. Probably too many requests, just wait a minute :)",
 };
 
-export const API_RETRIES = 3;
+export const API_RETRIES = 2;
 
 export const DEBOUNCE_DELAY = 200; // milliseconds

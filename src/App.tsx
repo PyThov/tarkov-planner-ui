@@ -11,6 +11,7 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/static" element={<Home />} />
           <Route path="/task_plan/:id" element={<TaskPlan />} />
         </Routes>
       </div>
