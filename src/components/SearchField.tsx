@@ -26,6 +26,7 @@ export default function SearchField({
         display: "flex",
         alignItems: "center",
         width: "300px",
+        height: "40px",
         backgroundColor: theme.palette.background.default,
         borderBottom: `2px solid ${theme.palette.divider}`,
       })}

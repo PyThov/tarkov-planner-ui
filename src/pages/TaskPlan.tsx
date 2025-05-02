@@ -3,7 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchTaskPlan } from "../api";
 import TaskPlanCard from "../components/TaskPlanCard";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Box, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { API_RETRIES, ENDPOINTS, ERROR_MSGS } from "../utils/constants";
 import TaskItemsCard from "../components/TaskItemsCard";
 
@@ -18,6 +19,10 @@ export default function TaskPlan({}: TaskPlanProps) {
     retry: API_RETRIES,
   });
 
+  const OnBack = () => {
+    window.location.assign("/")
+  }
+
   return (
     <Box
       width="100%"
@@ -27,16 +32,21 @@ export default function TaskPlan({}: TaskPlanProps) {
       alignItems="center"
       overflow="auto"
     >
-      {isLoading ? (
-        <CircularProgress color="secondary" />
-      ) : (
-        data && (
-          <Box display="flex" flexDirection="row" alignItems="start" gap={4}>
-            <TaskPlanCard taskDeps={data} />
-            <TaskItemsCard itemReqs={data.items} total={data.itemsTotal} />
-          </Box>
-        )
-      )}
+      <Box display="flex" flexDirection="row" alignItems="start" gap={4}>
+        <IconButton onClick={OnBack} aria-label="back" size="large">
+          <ArrowBackIosIcon fontSize="inherit" />
+        </IconButton>
+        {isLoading ? (
+          <CircularProgress color="secondary" />
+        ) : (
+          data && (
+            <>
+              <TaskPlanCard taskDeps={data} />
+              <TaskItemsCard itemReqs={data.items} total={data.itemsTotal} />
+            </>
+          )
+        )}
+      </Box>
       {error && <Typography>{ERROR_MSGS.generic}</Typography>}
     </Box>
   );

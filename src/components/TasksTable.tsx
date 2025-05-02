@@ -55,11 +55,11 @@ export const TasksTable = ({
   };
 
   return (
-    <Paper sx={{ width: "100%", maxHeight: "100%" }}>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow sx={{ backgroundColor: "primary.dark" }}>
+    <Paper sx={{ width: "100%", height: "0px" }}>
+      <TableContainer component={Paper} sx={{ maxHeight: "75vh"}}>
+        <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead  >
+            <TableRow>
               <TableCell>
                 <Typography>{TABLE_COLUMNS[0]}</Typography>
               </TableCell>
@@ -84,7 +84,7 @@ export const TasksTable = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {rows.length > 0 && rows.map((row) => (
               <TableRow
                 hover
                 key={row.name}
@@ -136,7 +136,7 @@ export const TasksTable = ({
         component="div"
         count={data?.total || 0}
         rowsPerPage={rowsPerPage}
-        page={page}
+        page={rows.length > 0 ? page : 0} // Handling page here to avoid pagination error of 0 pages availabe when data loading
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
